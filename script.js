@@ -4,6 +4,11 @@ window.onload = () =>{
     const messageContainer = document.getElementById("message-container");
     const messageForm = document.getElementById("send-container");
     const messageInput = document.getElementById("message-input");
+    const sendButton = document.getElementById("send-button")
+
+    const messageTemplate = document.getElementById("message-template");
+    const messageInstance = document.importNode(messageTemplate.content, true); /*Import template into the DOM*/
+    const messageText = messageInstance.querySelector('p');
 
     /// const name = prompt('What is your name?') 
   
@@ -11,7 +16,22 @@ window.onload = () =>{
     
 
     socket.on('chat-message', data => {
-        appendMessage(data)
+        // appendMessage(data)
+
+        var messageNode = document.createElement("div");
+        messageNode.className = "message"
+
+        messageNode.innerHTML = data
+
+        messageContainer.appendChild(messageNode)
+
+        messageNode.style.display = "inline-block";
+
+        setTimeout(() => {
+            messageNode.style.opacity = "1";
+        }, 50);
+
+        
     });
 
      /* socket.on('user-connected', name => {
@@ -24,6 +44,7 @@ window.onload = () =>{
         socket.emit('send-chat-message', message)
         messageInput.value = ' '
         messageInput.placeholder = 'Start a new message'
+        sendOne.src = "icons/send-1.png"
     }
 
     const appendMessage = (message) => {

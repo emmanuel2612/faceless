@@ -4,12 +4,13 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-   "devStart": "nodemon server.js"
+    "devStart": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "twitter": "^1.7.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
